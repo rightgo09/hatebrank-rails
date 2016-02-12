@@ -137,6 +137,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   jbuilder (~> 2.0)
+  nokogiri
   pg (~> 0.15)
   puma
   rails (= 4.2.5.1)
