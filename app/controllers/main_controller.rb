@@ -3,7 +3,7 @@ class MainController < ApplicationController
     ymdhs = ::Db::CronRunning.order("id DESC").limit(2).map(&:yyyymmddhh)
     logger.info(ymdhs)
     now_ymdh, prev_ymdh = ymdhs
-    rsses = ::Db::HatebRss.where(yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
+    rsses = ::Db::HatebRss.where(yyyymmddhh: ymdhs).limit(50).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
     @rsses = []
     if rsses.has_key?(now_ymdh) && rsses.has_key?(prev_ymdh)
       rsses[now_ymdh].each do |now_rss|
