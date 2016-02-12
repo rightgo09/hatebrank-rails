@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  yyyymmddhh: 1
+  link: MyString
+  category: MyString
+  title: MyString
+  bookmarkcount: 1
+  description: MyString
+
+two:
+  yyyymmddhh: 1
+  link: MyString
+  category: MyString
+  title: MyString
+  bookmarkcount: 1
+  description: MyString
