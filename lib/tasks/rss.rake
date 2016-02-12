@@ -2,7 +2,7 @@ require 'net/http'
 require 'nokogiri'
 
 namespace :rss do
-  task :import do
+  task :import => :environment do
     yyyymmddhh = Time.now.strftime("%Y%m%d%H")
 
     rsses = {}
