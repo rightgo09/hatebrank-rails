@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212103447) do
+ActiveRecord::Schema.define(version: 20160212124111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "db_cron_runnings", force: :cascade do |t|
+    t.integer  "yyyymmddhh"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "hateb_rsses", force: :cascade do |t|
     t.integer  "yyyymmddhh"
