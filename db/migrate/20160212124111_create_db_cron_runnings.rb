@@ -1,6 +1,6 @@
 class CreateDbCronRunnings < ActiveRecord::Migration
   def change
-    create_table :db_cron_runnings do |t|
+    create_table :cron_runnings do |t|
       t.integer :yyyymmddhh
 
       t.timestamps null: false
