@@ -10,5 +10,86 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ * require_tree .
  *= require_self
  */
+
+html {
+    /*font-size: 62.5%;*/
+}
+
+body {
+    /*counter-reset: section;*/
+    margin: 0;
+    font-family: "メイリオ",Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+    /*-webkit-text-size-adjust: 100%;*/
+    /*font-size: xx-large;*/
+    /*font-size: 1.4rem;*/
+    /*font-size: small;*/
+}
+
+/*li:before {*/
+    /*counter-increment: section;*/
+    /*content: counters(section, ".") " ";*/
+/*}*/
+
+li {
+    /*list-style: none;*/
+}
+ul, ol {
+    /*-webkit-padding-start: 0px;*/
+}
+
+li.entry {
+    /*padding: 6px;*/
+    /*margin-left: 20px;*/
+    margin-right: 10px;
+    margin-bottom: 30px;
+    font-size: 90%;
+    word-wrap: break-word;
+}
+
+span.ttl {
+    border-bottom: 1px dashed;
+}
+
+.category {
+    color: white;
+    font-size: small;
+}
+.category-social {
+    background-color: #A78358;
+}
+.category-economics {
+    background-color: #A78358;
+}
+.category-life {
+    background-color: #068B71;
+}
+.category-knowledge {
+    background-color: #068B71;
+}
+.category-it {
+    background-color: #00A5DE;
+}
+.category-fun {
+    background-color: #F5AC0F;
+}
+.category-entertainment {
+    background-color: #F5AC0F;
+}
+.category-game {
+    background-color: #F5AC0F;
+}
+
+span.bkcnt a {
+    font-weight: bold;
+    color: #f66;
+    text-decoration: underline;
+    background-color: #fff0f0;
+}
+
+.dsc {
+    color: #666666;
+    font-size: x-small;
+}

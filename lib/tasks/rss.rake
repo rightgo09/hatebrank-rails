@@ -54,7 +54,7 @@ namespace :rss do
             description: item.description,
           )
         end
-        ::Db::CronRunning.create!(yyyymmddyy: yyyymmddhh)
+        ::Db::CronRunning.create!(yyyymmddhh: yyyymmddhh)
       end
     else
       puts "d is not empty"

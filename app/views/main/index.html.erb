@@ -1,2 +1,19 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<ol>
+  <% @rsses.each do |rr| %>
+    <% r = rr[:rss] %>
+    <li class="entry">
+      <div>
+        <span class="ttl"><%= r.title %></span>
+      </div>
+      <div>
+        <span class="lnk"><%= link_to(URI.decode(r.link), r.link, target: "_blank") %></span>
+      </div>
+      <div>
+        <span class="bkcnt"><%= link_to(r.bookmarkcount.to_s + " users", r.hateb_page_link, target: "_blank") %></span>
+        <span class="addbkcnt">(↑<%= rr[:diff_bookmarkcount] %>)</span>
+        <span class="category category-<%= r.category_en %>"><%= r.category_ja %></span>
+      </div>
+      <div class="dsc"><%= r.description %></div>
+    </li>
+  <% end %>
+</ol>
