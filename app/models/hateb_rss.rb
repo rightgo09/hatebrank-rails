@@ -9,7 +9,7 @@ class HatebRss
   CATEGORY_JA_TO_EN = Hash[*[CATEGORY_JA, CATEGORY_EN].transpose.flatten]
 
   def self.from_rss(item)
-    category_ja = item.at("subject").text
+    category_ja = item.at("subject")&.text || "unknown"
     seed = {
       link: item.attr("rdf:about"),
       category_ja: category_ja,
