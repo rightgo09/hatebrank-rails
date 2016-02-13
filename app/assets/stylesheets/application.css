@@ -14,35 +14,12 @@
  *= require_self
  */
 
-html {
-    /*font-size: 62.5%;*/
-}
-
 body {
-    /*counter-reset: section;*/
     margin: 0;
     font-family: "メイリオ",Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
-    /*-webkit-text-size-adjust: 100%;*/
-    /*font-size: xx-large;*/
-    /*font-size: 1.4rem;*/
-    /*font-size: small;*/
-}
-
-/*li:before {*/
-    /*counter-increment: section;*/
-    /*content: counters(section, ".") " ";*/
-/*}*/
-
-li {
-    /*list-style: none;*/
-}
-ul, ol {
-    /*-webkit-padding-start: 0px;*/
 }
 
 li.entry {
-    /*padding: 6px;*/
-    /*margin-left: 20px;*/
     margin-right: 10px;
     margin-bottom: 30px;
     font-size: 90%;
