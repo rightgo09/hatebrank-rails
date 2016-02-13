@@ -1,7 +1,6 @@
 class MainController < ApplicationController
   def index
     ymdhs = ::Db::CronRunning.order("id DESC").limit(2).map(&:yyyymmddhh)
-    logger.info(ymdhs)
     now_ymdh, prev_ymdh = ymdhs
     rsses = ::Db::HatebRss.where(yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
     @rsses = []
@@ -27,6 +26,6 @@ class MainController < ApplicationController
         }
       end
     end
-    @rsses.sort_by!{|rss| rss[:diff_bookmarkcount]}.reverse!
+    @rsses = @rsses.sort_by!{|rss| rss[:diff_bookmarkcount]}.reverse!.take(50)
   end
 end
