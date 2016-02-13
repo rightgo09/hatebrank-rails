@@ -1,6 +1,6 @@
 <header>
   <div id="setting"><%= link_to('〓', setting_index_path) %></div>
-  <h1>はてブ毎時ランキング <small><%= @croned_at.strftime("%Y/%m/%d %H:%M") %> 更新</small></h1>
+  <h1><%= link_to('はてブ毎時ランキング', root_path) %> <small><%= @croned_at.strftime("%Y/%m/%d %H:%M") %> 更新</small></h1>
 </header>
 
 <ol>
