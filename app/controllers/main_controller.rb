@@ -1,6 +1,9 @@
 class MainController < ApplicationController
   def index
-    ymdhs = ::Db::CronRunning.order("id DESC").limit(2).map(&:yyyymmddhh)
+    # ymdhs = ::Db::CronRunning.order("id DESC").limit(2).map(&:yyyymmddhh)
+    cron_runnings = ::Db::CronRunning.order("id DESC").limit(2).to_a
+    @croned_at = cron_runnings.first.updated_at
+    ymdhs = cron_runnings.map(&:yyyymmddhh)
     now_ymdh, prev_ymdh = ymdhs
     rsses = ::Db::HatebRss.where(yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
     @rsses = []

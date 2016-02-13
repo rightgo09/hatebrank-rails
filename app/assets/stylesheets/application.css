@@ -19,6 +19,20 @@ body {
     font-family: "メイリオ",Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
 }
 
+header {
+    background-color: #ccc;
+}
+
+header > h1 {
+    font-size: medium;
+    font-weight: normal;
+    margin: 0;
+}
+
+header > h1 > small {
+    font-size: xx-small;
+}
+
 li.entry {
     margin-right: 10px;
     margin-bottom: 30px;
