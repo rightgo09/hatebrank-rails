@@ -5,7 +5,12 @@ class MainController < ApplicationController
     @croned_at = cron_runnings.first.updated_at
     ymdhs = cron_runnings.map(&:yyyymmddhh)
     now_ymdh, prev_ymdh = ymdhs
-    rsses = ::Db::HatebRss.where(yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
+    if params[:category]
+      rsses = ::Db::HatebRss.where(category: params[:category], yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
+    else
+      rsses = ::Db::HatebRss.where(yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
+    end
+
     @rsses = []
     if rsses.has_key?(now_ymdh) && rsses.has_key?(prev_ymdh)
       rsses[now_ymdh].each do |now_rss|

@@ -23,6 +23,10 @@ header {
     background-color: #ccc;
 }
 
+#setting {
+    float: right;
+}
+
 header > h1 {
     font-size: medium;
     font-weight: normal;
