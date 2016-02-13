@@ -25,10 +25,17 @@ header {
 
 #setting {
     float: right;
+    font-size: xx-large;
+}
+
+#setting > a {
+    display: block;
+    color: #000;
+    text-decoration: none;
 }
 
 header > h1 {
-    font-size: medium;
+    font-size: x-large;
     font-weight: normal;
     margin: 0;
 }
@@ -38,8 +45,8 @@ header > h1 > a {
     text-decoration: none;
 }
 
-header > h1 > small {
-    font-size: xx-small;
+header > small {
+    font-size: x-small;
 }
 
 li.entry {
