@@ -96,6 +96,11 @@ span.bkcnt a {
     background-color: #fff0f0;
 }
 
+span.new {
+    color: red;
+    font-size: small;
+}
+
 .dsc {
     color: #666666;
     font-size: x-small;
