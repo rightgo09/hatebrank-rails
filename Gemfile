@@ -41,3 +41,5 @@ gem 'rails_12factor', group: :production
 gem 'puma'
 
 gem 'nokogiri'
+
+gem 'rack-user_agent'
