@@ -27,5 +27,15 @@ class MainController < ApplicationController
       end
     end
     @rsses = @rsses.sort_by!{|rss| rss[:diff_bookmarkcount]}.reverse!.take(50)
+    @rsses.map! do |rss|
+      if rss[:diff_bookmarkcount] > 0
+        rss[:diff_bookmarkcount_symbol] = "↑"
+      elsif rss[:diff_bookmarkcount] == 0
+        rss[:diff_bookmarkcount_symbol] = "→"
+      else
+        rss[:diff_bookmarkcount_symbol] = "↓"
+      end
+      rss
+    end
   end
 end
