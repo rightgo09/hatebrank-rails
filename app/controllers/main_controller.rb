@@ -4,7 +4,9 @@ class MainController < ApplicationController
     cron_runnings = ::Db::CronRunning.order("id DESC").limit(2).to_a
     @croned_at = cron_runnings.first.updated_at
 
-    @rsses = Rails.cache.fetch(@croned_at.to_s) do
+    @cache_key = @croned_at.to_s + (params[:category] || '')
+
+    @rsses = Rails.cache.fetch(@cache_key) do
       ymdhs = cron_runnings.map(&:yyyymmddhh)
       now_ymdh, prev_ymdh = ymdhs
       if params[:category]
