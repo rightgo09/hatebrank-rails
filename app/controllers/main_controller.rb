@@ -46,4 +46,7 @@ class MainController < ApplicationController
       rss
     end
   end
+
+  def category
+  end
 end

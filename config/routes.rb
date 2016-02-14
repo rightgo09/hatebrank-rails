@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'setting/index'
-
   root 'main#index'
+
+  get 'category' => 'main#category'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
