@@ -1,28 +1,32 @@
-<header>
-  <div id="setting"><%= link_to('〓', category_path) %></div>
-  <h1><%= link_to('はてブ毎時ランキング', root_path) %></h1>
-  <div><small><%= @croned_at.strftime("%Y/%m/%d %H:%M") %> 更新</small></div>
-</header>
+<% cache @croned_at.to_s do %>
 
-<ol>
-  <% @rsses.each do |rr| %>
-    <% r = rr[:rss] %>
-    <li class="entry">
-      <div>
-        <span class="ttl"><%= r.title %></span>
-      </div>
-      <div>
-        <span class="lnk"><%= link_to(URI.decode(r.link), r.link, target: "_blank") %></span>
-      </div>
-      <div>
-        <span class="bkcnt"><%= link_to(r.bookmarkcount.to_s + " users", r.hateb_page_link, target: "_blank") %></span>
-        <span class="addbkcnt">(<%= rr[:diff_bookmarkcount_symbol] %><%= rr[:diff_bookmarkcount] %>)</span>
-        <span class="category category-<%= r.category_en %>"><%= r.category_ja %></span>
-        <% if r.bookmarkcount == rr[:diff_bookmarkcount] %>
-            <span class="new">New!</span>
-        <% end %>
-      </div>
-      <div class="dsc"><%= r.description %></div>
-    </li>
-  <% end %>
-</ol>
+  <header>
+    <div id="setting"><%= link_to('〓', category_path) %></div>
+    <h1><%= link_to('はてブ毎時ランキング', root_path) %></h1>
+    <div><small><%= @croned_at.strftime("%Y/%m/%d %H:%M") %> 更新</small></div>
+  </header>
+
+  <ol>
+    <% @rsses.each do |rr| %>
+      <% r = rr[:rss] %>
+      <li class="entry">
+        <div>
+          <span class="ttl"><%= r.title %></span>
+        </div>
+        <div>
+          <span class="lnk"><%= link_to(URI.decode(r.link), r.link, target: "_blank") %></span>
+        </div>
+        <div>
+          <span class="bkcnt"><%= link_to(r.bookmarkcount.to_s + " users", r.hateb_page_link, target: "_blank") %></span>
+          <span class="addbkcnt">(<%= rr[:diff_bookmarkcount_symbol] %><%= rr[:diff_bookmarkcount] %>)</span>
+          <span class="category category-<%= r.category_en %>"><%= r.category_ja %></span>
+          <% if r.bookmarkcount == rr[:diff_bookmarkcount] %>
+              <span class="new">New!</span>
+          <% end %>
+        </div>
+        <div class="dsc"><%= r.description %></div>
+      </li>
+    <% end %>
+  </ol>
+
+<% end %>
