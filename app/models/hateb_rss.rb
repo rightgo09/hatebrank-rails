@@ -46,12 +46,12 @@ class HatebRss
   end
 
   def hateb_page_link
-    # TODO
-    if $is_from_smartphone
-      "http://b.hatena.ne.jp/entry.touch/" + @link.sub(/^https?:\/\//, "")
-    else
+    # # TODO
+    # if $is_from_smartphone
+    #   "http://b.hatena.ne.jp/entry.touch/" + @link.sub(/^https?:\/\//, "")
+    # else
       "http://b.hatena.ne.jp/entry/" + @link.sub(/^https?:\/\//, "")
-    end
+    # end
   end
 
   # TODO
