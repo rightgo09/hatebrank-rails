@@ -2,6 +2,15 @@ require 'net/http'
 require 'nokogiri'
 
 namespace :rss do
+  task :remove => :environment do
+    yyyymmddhh = Time.now.strftime("%Y%m%d00")
+    puts "rss:remove. yyyymmddhh < #{yyyymmddhh}"
+    ::ActiveRecord::Base.transaction do
+      ::Db::HatebRss.delete_all("yyyymmddhh < #{yyyymmddhh}")
+      ::Db::CronRunning.delete_all("yyyymmddhh < #{yyyymmddhh}")
+    end
+  end
+
   task :import => :environment do
     yyyymmddhh = Time.now.strftime("%Y%m%d%H")
 
