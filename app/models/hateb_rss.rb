@@ -50,8 +50,13 @@ class HatebRss
     # if $is_from_smartphone
     #   "http://b.hatena.ne.jp/entry.touch/" + @link.sub(/^https?:\/\//, "")
     # else
-      "http://b.hatena.ne.jp/entry/" + @link.sub(/^https?:\/\//, "")
+    # "http://b.hatena.ne.jp/entry/" + @link.sub(/^https?:\/\//, "")
     # end
+    url = "http://b.hatena.ne.jp/entry/"
+    if @link.index('https://') == 0
+      url << "s/"
+    end
+    url << @link.sub(/^https?:\/\//, "")
   end
 
   # TODO
