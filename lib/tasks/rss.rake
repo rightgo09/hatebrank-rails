@@ -3,14 +3,14 @@ require 'nokogiri'
 
 namespace :rss do
   task :remove => :environment do
-    cron_runnings = ::Db::CronRunning.order("id DESC").limit(10).to_a
+    cron_runnings = ::CronRunning.order("id DESC").limit(10).to_a
     puts "size: #{cron_runnings.size}"
     if cron_runnings.size == 10
       yyyymmddhh = cron_runnings.last.yyyymmddhh
       puts "rss:remove. yyyymmddhh < #{yyyymmddhh}"
       ::ActiveRecord::Base.transaction do
-        ::Db::HatebRss.delete_all("yyyymmddhh < #{yyyymmddhh}")
-        ::Db::CronRunning.delete_all("yyyymmddhh < #{yyyymmddhh}")
+        ::HatebRss.delete_all("yyyymmddhh < #{yyyymmddhh}")
+        ::CronRunning.delete_all("yyyymmddhh < #{yyyymmddhh}")
       end
     end
   end
@@ -20,7 +20,7 @@ namespace :rss do
 
     rsses = {}
 
-    d = ::Db::HatebRss.where(yyyymmddhh: yyyymmddhh).all.index_by(&:link)
+    d = ::HatebRss.where(yyyymmddhh: yyyymmddhh).all.index_by(&:link)
 
     # http://b.hatena.ne.jp/hotentry.rss
     # http://b.hatena.ne.jp/video.rss
@@ -40,7 +40,7 @@ namespace :rss do
     ].each do |url|
       res = Net::HTTP.get_response(URI(url))
       doc = ::Nokogiri::HTML(res.body)
-      doc.xpath("//item").map{|i| ::HatebRss.from_rss(i)}.each do |item|
+      doc.xpath("//item").map{|i| ::Hateb.from_rss(i)}.each do |item|
         if rsses.has_key?(item.link)
           if rsses[item.link].bookmarkcount < item.bookmarkcount
             rsses[item.link] = item
@@ -58,7 +58,7 @@ namespace :rss do
       ::ActiveRecord::Base.transaction do
         rsses.each do |link, item|
           puts "link: #{link}"
-          ::Db::HatebRss.create!(
+          ::HatebRss.create!(
             yyyymmddhh: yyyymmddhh,
             link: item.link,
             category: item.category_en,
@@ -67,7 +67,7 @@ namespace :rss do
             description: item.description,
           )
         end
-        ::Db::CronRunning.create!(yyyymmddhh: yyyymmddhh)
+        ::CronRunning.create!(yyyymmddhh: yyyymmddhh)
       end
     else
       puts "d is not empty"
@@ -84,7 +84,7 @@ namespace :rss do
             )
           else
             puts "insert"
-            ::Db::HatebRss.create!(
+            ::HatebRss.create!(
               yyyymmddhh: yyyymmddhh,
               link: item.link,
               category: item.category_en,

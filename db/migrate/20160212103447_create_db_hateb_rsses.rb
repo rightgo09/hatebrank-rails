@@ -1,4 +1,4 @@
-class CreateDbHatebRsses < ActiveRecord::Migration
+class CreateDbHatebRsses < ActiveRecord::Migration[7.0]
   def change
     create_table :hateb_rsses do |t|
       t.integer :yyyymmddhh

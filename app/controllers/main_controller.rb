@@ -1,7 +1,7 @@
 class MainController < ApplicationController
   def index
-    # ymdhs = ::Db::CronRunning.order("id DESC").limit(2).map(&:yyyymmddhh)
-    cron_runnings = ::Db::CronRunning.order("id DESC").limit(2).to_a
+    # ymdhs = ::CronRunning.order("id DESC").limit(2).map(&:yyyymmddhh)
+    cron_runnings = ::CronRunning.order("id DESC").limit(2).to_a
     @croned_at = cron_runnings.first.updated_at
 
     @cache_key = @croned_at.to_s + (params[:category] || '')
@@ -10,9 +10,9 @@ class MainController < ApplicationController
       ymdhs = cron_runnings.map(&:yyyymmddhh)
       now_ymdh, prev_ymdh = ymdhs
       if params[:category]
-        rsses = ::Db::HatebRss.where(category: params[:category], yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
+        rsses = ::HatebRss.where(category: params[:category], yyyymmddhh: ymdhs).map{|item| ::Hateb.from_db(item)}.group_by(&:yyyymmddhh)
       else
-        rsses = ::Db::HatebRss.where(yyyymmddhh: ymdhs).map{|item| ::HatebRss.from_db(item)}.group_by(&:yyyymmddhh)
+        rsses = ::HatebRss.where(yyyymmddhh: ymdhs).map{|item| ::Hateb.from_db(item)}.group_by(&:yyyymmddhh)
       end
 
       rss2 = []

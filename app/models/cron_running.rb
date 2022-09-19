@@ -1,0 +1,2 @@
+class CronRunning < ApplicationRecord
+end

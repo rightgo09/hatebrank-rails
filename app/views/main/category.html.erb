@@ -7,7 +7,7 @@
 
   <ul>
     <li><%= link_to('一般', root_path) %></li>
-    <% HatebRss::CATEGORY_EN_TO_JA.each do |en, ja| %>
+    <% Hateb::CATEGORY_EN_TO_JA.each do |en, ja| %>
       <li><%= link_to(ja, root_path(category: en)) %></li>
     <% end %>
   </ul>

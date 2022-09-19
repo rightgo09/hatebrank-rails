@@ -14,7 +14,7 @@
           <span class="ttl"><%= r.title %></span>
         </div>
         <div>
-          <span class="lnk"><%= link_to(URI.decode(r.link), r.link, target: "_blank") %></span>
+          <span class="lnk"><%= link_to(CGI.unescape(r.link), r.link, target: "_blank") %></span>
         </div>
         <div>
           <span class="bkcnt"><%= link_to(r.bookmarkcount.to_s + " users", r.hateb_page_link, target: "_blank") %></span>
